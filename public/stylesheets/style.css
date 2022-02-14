@@ -1,6 +1,12 @@
+#form {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  /* background-image: url(); */
 }
 
 a {
