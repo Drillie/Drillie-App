@@ -1,5 +1,5 @@
 <div id='form'>
-  <form action='/auth/signup' method='POST'>
+  <form action='/signup' method='POST'>
     <input type='text' name='username' placeholder='Username' />
     <input type='password' name='password' placeholder='password' />
     <select name='tools'>
@@ -10,7 +10,7 @@
     <button type='submit'>Sign up</button>
   </form>
   <p>Have an account?</p>
-  <a href='/auth/login'>Log in here</a>
+  <a href='/login'>Log in here</a>
 </div>
 
 {{#if errorMessage}}
