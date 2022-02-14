@@ -10,8 +10,35 @@
    </head>
 
    <body>
+      <ul>
+         <li><a href="/profile">Your Profile</a></li>
+         <li><a href="/post-project">Create a new Project</a></li>
+         <li><a href="/tool-to-offer">Which Tools do you have to offer?</a></li>
+         <li><a href="/matches">Matches</a></li>
+      </ul>
 
       {{{body}}}
+
+      <a href="/logout">Log Out</a>
+
+      {{!-- Modal Section --}}
+
+      <div class="bg-modal">
+         <div class="modal-content">
+            <div class="close">+</div>
+            <h1>Add a new project</h1>
+            <form action="" method="post">
+               <label for="">Project Name</label>
+               <input type="text">
+               <label for="">Required Tools</label>
+               <select name="" id="">
+                  <option value="">Tool 01</option>
+               </select>
+               <button type="submit">Add this project</button>
+            </form>
+         </div>
+      </div>
+      
 
       <script src="/js/script.js"></script>
    </body>
