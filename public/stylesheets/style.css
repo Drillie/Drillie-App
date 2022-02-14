@@ -1,4 +1,11 @@
+#form {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
 body {
+
+
   margin: 0;
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;

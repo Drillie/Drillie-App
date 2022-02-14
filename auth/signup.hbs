@@ -1,0 +1,18 @@
+<div id='form'>
+  <form action='/auth/signup' method='POST'>
+    <input type='text' name='username' placeholder='Username' />
+    <input type='password' name='password' placeholder='password' />
+    <select name='tools'>
+      {{#each tools}}
+        <option value='{{_id}}'>{{name}}</option>
+      {{/each}}
+    </select>
+    <button type='submit'>Sign up</button>
+  </form>
+  <p>Have an account?</p>
+  <a href='/auth/login'>Log in here</a>
+</div>
+
+{{#if errorMessage}}
+  {{errorMessage}}
+{{/if}}
