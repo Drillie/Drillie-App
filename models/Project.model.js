@@ -13,8 +13,8 @@ const projectSchema = new Schema(
     description: {
         type: String,
         required: true,
-        minlength: 150,
-        maxlength: 3000
+        // minlength: 150,
+        // maxlength: 3000
     },
     toolsNeeded:[{          // choose out of the Tools DB that was initiated in seed.js
         type: Schema.Types.ObjectId,
