@@ -1,0 +1,16 @@
+<h1>View Details</h1>
+{{#with projects}}
+    <h1>{{projectname}}</h1>
+    <p>{{description}}</p>
+    <ul>
+        {{#each toolsNeeded}}
+            <li>{{name}}</li>
+        {{/each}} 
+    </ul>
+    
+    
+{{/with}}
+
+{{!-- {{#each projects}}
+    {{toolsNeeded.name}}
+{{/each}}  --}}
