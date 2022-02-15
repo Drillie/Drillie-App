@@ -5,7 +5,11 @@
 {{#each projects}}
    <div class="projectContainer">
       <h4>{{projectname}}</h4>
-      <div class="close2">+</div>
+      <div class="buttonContainer">
+         <button class="viewDetails"><a href="/post-project/{{_id}}">View Details</a></button>
+         <button class="edit"><a href="/post-project/edit/{{_id}}">Edit</a></button>
+      </div>      
+      <div class="close2"><a href="/post-project/delete/{{_id}}">+</a></div>
    </div>
 
 {{/each}}
@@ -14,23 +18,26 @@
 
 {{!-- Modal Section --}}
 
-      <div class="bg-modal">
-         <div class="modal-content">
-            <div class="close">+</div>
-            <h1>Add a new project</h1>
-            <form action="/post-project" method="POST">
-               <label for="projectname">Project Name</label>
-               <input type="text" name="projectname" id="projectname">
-               <label for="description">Description</label>
-               <input type="text" name="description" id="description">
-               <label for="toolsNeeded">Required Tools</label>
-               <select name="toolsNeeded" id="toolsNeeded" multiple="multiple">
-                   {{#each tools}}
-                     <option value="{{_id}}">{{name}}</option>
-                  {{/each}}
-               </select>
-               <button type="submit">Add this project</button>
-            </form>
-         </div>
-      </div>
+{{!-- Add project modal --}}
 
+<div class="bg-modal">   
+   <div class="modal-content">
+      <div class="close">+</div>
+      <h1>Add a new project</h1>
+      <form action="/post-project" method="POST">
+         <label for="projectname">Project Name</label>
+         <input type="text" name="projectname" id="projectname">
+         <label for="description">Description</label>
+         <input type="text" name="description" id="description">
+         <label for="toolsNeeded">Required Tools</label>
+         <select name="toolsNeeded" id="toolsNeeded" multiple="multiple">
+             {{#each tools}}
+               <option value="{{_id}}">{{name}}</option>
+            {{/each}}
+         </select>
+         <button type="submit">Add this project</button>
+      </form>
+   </div>   
+</div>
+
+   
