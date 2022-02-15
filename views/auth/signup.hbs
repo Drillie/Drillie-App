@@ -1,7 +1,8 @@
 <div id='form'>
   <form action='/signup' method='POST'>
-    <input type='text' name='username' placeholder='Username' />
-    <input type='password' name='password' placeholder='password' />
+    <input type='text' name='username' placeholder='Username' required/>
+    <input type='email' name='email' placeholder='E-Mail' required/>
+    <input type='password' name='password' placeholder='Password'/>
     <select name='tools'>
       {{#each tools}}
         <option value='{{_id}}'>{{name}}</option>
