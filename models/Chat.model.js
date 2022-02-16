@@ -5,6 +5,10 @@ const msgSchema = new Schema(
     msg: {
       type: String,
       required: true
+    },
+    project: {
+      type: Schema.Types.ObjectId,
+        ref: 'Project'
     }
   }
 );

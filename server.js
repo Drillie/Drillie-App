@@ -18,11 +18,11 @@ io.on('connection', socket => {
   console.log('new connection')
   console.log('id of the socket: ', socket.id)
   socket.on("chat message", msg => {
-    const message = new Msg({msg})
-    message.save().then(() => {
+    //const message = new Msg({msg})
+    //message.save().then(() => {
       console.log('this is the incoming message: ', msg);
       io.emit('chat message', msg)
-  })
+  //})
     
   })
 })

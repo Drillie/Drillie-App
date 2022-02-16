@@ -9,8 +9,8 @@ const fileUploader = require('../config/cloudinary.config');
 const MongoStore = require("connect-mongo");
 
 /* GET home page */
-router.get('/', (req, res, next) => {
-  res.render('index', { layout: false })
+router.get('/', isLoggedIn, (req, res, next) => {
+  res.redirect("/profile")
 })
 
 // Show Profile
@@ -185,6 +185,36 @@ router.get('/match', isLoggedIn, (req, res, next) => {
     .catch((err) => {
       next(err)
     })
+})
+
+// chat-app
+
+router.get("/chat-app/:id", (req, res, next) => {
+  Msg.find({}, function(err, msg) {
+    if(err) {
+         console.log(err);
+    } else {
+         Project.findById(req.params.id)
+         .then(project => {
+           console.log('project: ', project)
+          res.render("chat-app", {msg, project: project});
+         })         
+    }
+});
+   
+});
+
+router.post("/chat-app/:id", (req, res, next) => {
+  const projectId = req.params.id
+  const { msg } = req.body
+  console.log('projectID: ',projectId);
+
+  Msg.create({ msg, project: projectId })
+  .then(msg => {
+    //console.log('msg: ',msg);
+    res.redirect(`/chat-app/${projectId}`)
+  })
+  .catch(err => next(err))
 })
 
 module.exports = router
