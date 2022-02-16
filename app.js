@@ -22,8 +22,8 @@ const app = express()
 const PORT = process.env.PORT
 
 // socket.io for the chat function
-const { Server } = require("socket.io");
-const io = new Server(app);
+//const { Server } = require("socket.io");
+//const io = new Server(app);
 
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
