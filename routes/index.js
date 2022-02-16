@@ -101,7 +101,6 @@ router.get('/post-project/edit/:id', (req, res, next) => {
   const projects = Project.findById(id).populate('toolsNeeded')
   const tools = Tool.find()
 
-<<<<<<< HEAD
   Promise.all([projects, tools]).then(data => {
     let options = ''
 		let selected = 'selected'
@@ -118,15 +117,6 @@ router.get('/post-project/edit/:id', (req, res, next) => {
   })
   .catch(err => next(err))		
 });
-=======
-  Promise.all([projects, tools])
-    .then((data) => {
-      const [projects, tools] = data
-      res.render('project-edit', { projects, tools })
-    })
-    .catch((err) => next(err))
-})
->>>>>>> master
 
 router.post('/post-project/update/:id', (req, res, next) => {
   const { projectname, description, toolsNeeded } = req.body
@@ -153,7 +143,6 @@ router.get('/matches', (req, res, next) => {
   })
 })
 
-<<<<<<< HEAD
 // chat-app
 
 router.get("/chat-app", (req, res, next) => {
@@ -164,7 +153,6 @@ router.get("/chat-app", (req, res, next) => {
 });
 
 module.exports = router;
-=======
 router.get('/match', (req, res, next) => {
   const tool = req.query.match
   console.log(tool)
@@ -186,4 +174,3 @@ router.get('/match', (req, res, next) => {
 })
 
 module.exports = router
->>>>>>> master
