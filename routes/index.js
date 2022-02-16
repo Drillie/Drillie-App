@@ -1,11 +1,11 @@
-const router = require('express').Router()
-const User = require('../models/User.model')
-const Tool = require('../models/Tool.model')
-const Project = require('../models/Project.model')
+const router = require("express").Router();
+const User = require("../models/User.model");
+const Tool = require("../models/Tool.model");
+const Project = require("../models/Project.model");
+const Msg = require("../models/Chat.model");
 
-const mongoose = require('mongoose')
-
-const fileUploader = require('../config/cloudinary.config')
+const fileUploader = require('../config/cloudinary.config');
+const MongoStore = require("connect-mongo");
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -116,13 +116,24 @@ router.get('/post-project/edit/:id', (req, res, next) => {
   const projects = Project.findById(id).populate('toolsNeeded')
   const tools = Tool.find()
 
-  Promise.all([projects, tools])
-    .then((data) => {
-      const [projects, tools] = data
-      res.render('project-edit', { projects, tools })
-    })
-    .catch((err) => next(err))
-})
+  // make sure that all the tolls which where selected before are maked
+
+  Promise.all([projects, tools]).then(data => {
+    let options = ''
+		let selected = 'selected'
+    const [projects, tools] = data;
+    
+
+    tools.forEach(tool => {
+			selected = projects.toolsNeeded.map(el => el._id.toString()).includes(tool._id.toString()) ? 'selected' : '';			
+			options += `<option value="${tool._id}" ${selected} > ${tool.name} </option>`
+      // console.log('tool ID: ', [tool._id.toString()]);
+      // console.log('needed: ', projects.toolsNeeded.map(el => el._id.toString()))
+		})
+    res.render('project-edit', { projects, options })
+  })
+  .catch(err => next(err))		
+});
 
 router.post('/post-project/update/:id', (req, res, next) => {
   const { projectname, description, toolsNeeded } = req.body
@@ -149,6 +160,16 @@ router.get('/matches', (req, res, next) => {
   })
 })
 
+// chat-app
+
+router.get("/chat-app", (req, res, next) => {
+  Msg.find()
+  .then(msg => {
+    res.render("chat-app", {msg});
+  })  
+});
+
+module.exports = router;
 router.get('/match', (req, res, next) => {
   const tool = req.query.match
   console.log(tool)
