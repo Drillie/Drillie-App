@@ -26,3 +26,12 @@ document.querySelector('.close').addEventListener('click', function() {
    document.querySelector('.down-arrow').classList.toggle('rotate180');
  });
 
+ // Flip Signup card
+
+ const card = document.querySelector(".card__inner");
+
+ card.addEventListener("click", function (e) {
+   console.log('flip');
+  card.classList.toggle('is-flipped');
+});
+
