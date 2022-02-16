@@ -83,8 +83,18 @@ router.get('/post-project/edit/:id', (req, res, next) => {
   const tools = Tool.find()
 
   Promise.all([projects, tools]).then(data => {
+    let options = ''
+		let selected = 'selected'
     const [projects, tools] = data;
-    res.render('project-edit', { projects, tools })
+    
+
+    tools.forEach(tool => {
+			selected = projects.toolsNeeded.map(el => el._id.toString()).includes(tool._id.toString()) ? 'selected' : '';			
+			options += `<option value="${tool._id}" ${selected} > ${tool.name} </option>`
+      // console.log('tool ID: ', [tool._id.toString()]);
+      // console.log('needed: ', projects.toolsNeeded.map(el => el._id.toString()))
+		})
+    res.render('project-edit', { projects, options })
   })
   .catch(err => next(err))		
 });

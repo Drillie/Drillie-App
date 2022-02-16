@@ -6,10 +6,8 @@
     <label for="description">Description</label>
     <input type="text" name="description" id="description" value="{{projects.description}}">
     <label for="toolsNeeded">Required Tools</label>
-    <select name="toolsNeeded" id="toolsNeeded" multiple="multiple">
-        {{#each tools}}
-          <option value="{{_id}}">{{name}}</option>
-       {{/each}}
+    <select name="toolsNeeded" id="toolsNeeded" multiple="multiple">        
+        {{{options}}}       
     </select>
     <button type="submit">Change this project</button>
 </form>
