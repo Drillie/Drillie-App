@@ -12,13 +12,29 @@ router.get('/', (req, res, next) => {
   res.render('index', { layout: false })
 })
 
-/* GET home page */
-router.get('/profile', (req, res, next) => {
-  res.render('profile')
-})
+// Show Profile
+router.get("/profile", (req, res, next) => {
+  const id = req.session.user._id;
+  User.findById(id)
+      .populate('toolsAvailable')
+      .then(currentUser => {
+      res.render("profile/profile", {userDetails: currentUser});
+  })
+  .catch(err => next(err))
+});
+
+// Edit Profile
+router.get("/profile/edit", (req, res, next) => {
+  const id = req.session.user._id;
+  User.findById(id, function(req1, currentUser) {
+    Tool.find({}, function(req2, toolsFromDb) {
+      res.render("profile/edit", {userToBeEdited: currentUser, tools: toolsFromDb});
+    })
+  })
+});
+
 
 // Render two collections at the same time, in order to get the tools and also show all the current projects
-
 router.get('/post-project', function (req, res) {
   Tool.find({}, function (err, tools) {
     if (err) {
@@ -34,6 +50,7 @@ router.get('/post-project', function (req, res) {
     }
   })
 })
+
 
 // Add a new project
 
@@ -110,9 +127,6 @@ router.post('/post-project/update/:id', (req, res, next) => {
   })
 })
 
-router.get('/tool-to-offer', (req, res, next) => {
-  res.render('tool-to-offer')
-})
 
 router.get('/matches', (req, res, next) => {
   Tool.find().then((allTools) => {
