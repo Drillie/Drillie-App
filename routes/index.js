@@ -152,7 +152,7 @@ router.get('/match', (req, res, next) => {
     .then((project) => {
       console.log(project.toolsNeeded)
       const toolsNeeded = project.toolsNeeded
-      User.find({ toolsAvailable: { $in: toolsNeeded } }).then((users) => {
+      User.find({ toolsAvailable: { $all: toolsNeeded } }).then((users) => {
         console.log(users)
         res.render('match', { users: users })
       })

@@ -1,6 +1,6 @@
 <form action='/match' method='GET'>
   <label for='match'> Look for a match </label>
-  <select name='match' multiple>
+  <select name='match'>
     {{#each allProject}}
       <option value='{{projectname}}'>{{projectname}}</option>
     {{/each}}
