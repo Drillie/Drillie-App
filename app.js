@@ -16,15 +16,14 @@ const hbs = require('hbs')
 
 const app = express()
 
-//test
 
 
 
 const PORT = process.env.PORT
 
 // socket.io for the chat function
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const { Server } = require("socket.io");
+const io = new Server(app);
 
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
