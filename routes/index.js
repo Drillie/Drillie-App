@@ -2,8 +2,10 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const Tool = require("../models/Tool.model");
 const Project = require("../models/Project.model");
+const Msg = require("../models/Chat.model");
 
 const fileUploader = require('../config/cloudinary.config');
+const MongoStore = require("connect-mongo");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -126,7 +128,10 @@ router.get("/matches", (req, res, next) => {
 // chat-app
 
 router.get("/chat-app", (req, res, next) => {
-  res.render("chat-app");
+  Msg.find()
+  .then(msg => {
+    res.render("chat-app", {msg});
+  })  
 });
 
 module.exports = router;
