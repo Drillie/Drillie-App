@@ -1,4 +1,4 @@
-<div id='form'>
+{{!-- <div id='form'> --}}
   <form action='/signup' method='POST'>
     <input type='text' name='username' placeholder='Username' required/>
     <input type='email' name='email' placeholder='E-Mail' required/>
@@ -12,7 +12,7 @@
   </form>
   <p>Have an account?</p>
   <a href='/login'>Log in here</a>
-</div>
+{{!-- </div> --}}
 
 {{#if errorMessage}}
   {{errorMessage}}
