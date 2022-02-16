@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 })
 
 // Show Profile
-router.get("/profile", (req, res, next) => {
+router.get("/profile", isLoggedIn, (req, res, next) => {
   const id = req.session.user._id;
   User.findById(id)
       .populate('toolsAvailable')
@@ -25,7 +25,7 @@ router.get("/profile", (req, res, next) => {
 });
 
 // Edit Profile
-router.get("/profile/edit", (req, res, next) => {
+router.get("/profile/edit", isLoggedIn, (req, res, next) => {
   const id = req.session.user._id;
   User.findById(id, function(req1, currentUser) {
     Tool.find({}, function(req2, toolsFromDb) {
@@ -36,21 +36,6 @@ router.get("/profile/edit", (req, res, next) => {
 
 
 // Render two collections at the same time, in order to get the tools and also show all the current projects
-router.get('/post-project', function (req, res) {
-  Tool.find({}, function (err, tools) {
-    if (err) {
-      console.log(err)
-    } else {
-      Project.find({}, function (err, projects) {
-        if (err) {
-          console.log(err)
-        } else {
-          res.render('post-project', { projects: projects, tools: tools })
-        }
-      })
-    }
-  })
-})
 
 router.get("/post-project", isLoggedIn, function(req, res) {
   const user = req.session.user
@@ -150,13 +135,13 @@ router.post('/post-project/update/:id', (req, res, next) => {
 })
 
 
-router.get('/matches', (req, res, next) => {
+router.get('/matches', isLoggedIn, (req, res, next) => {
   Tool.find().then((allTools) => {
     res.render('matches', { allTools })
   })
 })
 
-router.get('/match', (req, res, next) => {
+router.get('/match', isLoggedIn, (req, res, next) => {
   const tool = req.query.match
   console.log(tool)
   Tool.find({ name: tool })
