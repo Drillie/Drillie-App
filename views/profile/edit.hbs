@@ -1,0 +1,28 @@
+<h1>Update Your Profile</h1>
+
+{{#with userToBeEdited}}
+<h3>Name: {{this.username}}</h3>
+<h3>E-Mail: {{this.email}}</h3>
+
+<form action="profile/edit" method="POST">
+    <label for="name">Name: </label>
+    <input type="text" name="name" value="{{name}}" required>
+    <label for="location">Location: </label>
+    <input type="text" name="location" value="{{location}}">
+
+    
+    <label for="offer">I am offering: </label>
+    <form>
+        <input type="radio" name="choice" value='hands'> I offer my helping Hands
+        <input type="radio" name="choice" value='hands&tools'> Can give you Hands&Tools 
+        <input type="radio" name="choice" value='borrow my tools'> Borrow my Tools and return them
+    </form>  
+{{/with}}
+  <h3>Tools:</h3>
+    <select name="tools" id="tools" multiple>
+        {{#each tools}}
+        <option value="{{_id}}">{{name}}</option>
+        {{/each}}
+    </select>
+    <button type="submit">Edit</button>
+</form>
