@@ -1,3 +1,4 @@
+const isLoggedIn = require("../middleware/isLoggedIn");
 const router = require("express").Router();
 const User = require("../models/User.model");
 const Tool = require("../models/Tool.model");
@@ -18,24 +19,21 @@ router.get("/profile", (req, res, next) => {
 
 // Render two collections at the same time, in order to get the tools and also show all the current projects
 
-router.get("/post-project", function(req, res) {
+router.get("/post-project", isLoggedIn, function(req, res) {
   const user = req.session.user
   console.log('user: ' ,user._id)
   const findInit = Project.find().then(projects => {
-    console.log('find init:',projects[0].owner)
+    console.log('find init:',projects[0].initiator)
   })
-  
-
   
   Tool.find({}, function(err, tools) {
        if(err) {
             console.log(err);
        } else {
-            Project.find({ owner: user._id }, function(err, projects) {
+            Project.find({ initiator: user._id }, function(err, projects) {
                  if(err) {
                       console.log(err)
-                 } else {
-                      //console.log('Initiator: ', projects.initiator)
+                 } else {      
                       res.render("post-project", {projects: projects, tools: tools});
                  }  
             }); 
@@ -45,13 +43,13 @@ router.get("/post-project", function(req, res) {
 
 // Add a new project
 
-router.post('/post-project', (req, res, next) => {
-  const { projectname, description, toolsNeeded, owner } = req.body
+router.post('/post-project', isLoggedIn, (req, res, next) => {
+  const { projectname, description, toolsNeeded, initiator } = req.body
   const user = req.session.user
 
   console.log('test: ', req.file)
 
-  Project.create({ projectname, description, toolsNeeded, owner: user._id  })
+  Project.create({ projectname, description, toolsNeeded, initiator: user._id  })
     .then(tool => {
       console.log('Created Tool: ',tool)
       res.redirect('/post-project')
@@ -61,7 +59,7 @@ router.post('/post-project', (req, res, next) => {
 
 // Delete a project from the board
 
-router.get('/post-project/delete/:id', (req, res, next) => {
+router.get('/post-project/delete/:id', isLoggedIn, (req, res, next) => {
 	const id = req.params.id
 	Project.findByIdAndDelete(id)
 		.then(deletedProject => {

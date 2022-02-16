@@ -23,8 +23,7 @@ const projectSchema = new Schema(
     created: {
         type: Date,
         default: Date.now
-    },
-    owner: { type: Schema.Types.ObjectId, ref: "User" },
+    }
   }
 );
 
