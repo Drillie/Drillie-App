@@ -11,9 +11,9 @@ router.get('/', (req, res, next) => {
 })
 
 /* GET home page */
-router.get('/profile', (req, res, next) => {
-  res.render('profile')
-})
+// router.get('/profile', (req, res, next) => {
+//   res.render('profile')
+// })
 // Show Profile
 router.get('/profile', (req, res, next) => {
   const id = req.session.user._id
@@ -135,29 +135,40 @@ router.get('/tool-to-offer', (req, res, next) => {
   res.render('tool-to-offer')
 })
 
-// Select tools from the matches page
+// Select projects from the matches page
 
 router.get('/matches', (req, res, next) => {
-  Tool.find().then((allTools) => {
-    res.render('matches', { allTools })
+  Project.find().then((allProject) => {
+    res.render('matches', { allProject })
   })
 })
 
-// match the tools selected to a project
+// match the project selected to a user toolAvailable
 router.get('/match', (req, res, next) => {
-  const tool = req.query.match
-  console.log(tool)
-  Tool.find({ name: tool })
+  const projectname = req.query.match
+  console.log(projectname)
+  Project.findOne({ projectname: projectname })
 
-    .then((matches) => {
-      console.log(matches)
-      matches.forEach((match) => {
-        let id = mongoose.Types.ObjectId(match._id)
-        Project.find({ toolsNeeded: { $in: [id] } }).then((foundMatches) => {
-          console.log(`this is the found: ${foundMatches}`)
-          res.render('match', { foundMatches })
-        })
+    .then((project) => {
+      console.log(project.toolsNeeded)
+      const toolsNeeded = project.toolsNeeded
+      User.find({ toolsAvailable: { $in: toolsNeeded } }).then((users) => {
+        console.log(users)
+        res.render('match', { users: users })
       })
+    })
+    .catch((err) => {
+      next(err)
+    })
+})
+// get the match profile
+router.get('/matchProfile/:id', (req, res, next) => {
+  const id = req.params.id
+  User.findById(id)
+    .populate('toolsAvailable')
+    .then((match) => {
+      console.log(match)
+      res.render('profile/matchProfile', { match })
     })
     .catch((err) => {
       next(err)

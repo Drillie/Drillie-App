@@ -1,9 +1,8 @@
 <form action='/match' method='GET'>
   <label for='match'> Look for a match </label>
-
   <select name='match' multiple>
-    {{#each allTools}}
-      <option value='{{name}}'>{{name}}</option>
+    {{#each allProject}}
+      <option value='{{projectname}}'>{{projectname}}</option>
     {{/each}}
   </select>
 
