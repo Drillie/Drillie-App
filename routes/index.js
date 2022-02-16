@@ -10,9 +10,25 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-/* GET home page */
+// Show Profile
 router.get("/profile", (req, res, next) => {
-  res.render("profile");
+  const id = req.session.user._id;
+  User.findById(id)
+      .populate('toolsAvailable')
+      .then(currentUser => {
+      res.render("profile/profile", {userDetails: currentUser});
+  })
+  .catch(err => next(err))
+});
+
+// Edit Profile
+router.get("/profile/edit", (req, res, next) => {
+  const id = req.session.user._id;
+  User.findById(id, function(req1, currentUser) {
+    Tool.find({}, function(req2, toolsFromDb) {
+      res.render("profile/edit", {userToBeEdited: currentUser, tools: toolsFromDb});
+    })
+  })
 });
 
 
