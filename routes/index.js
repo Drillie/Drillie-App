@@ -123,4 +123,10 @@ router.get("/matches", (req, res, next) => {
   res.render("matches");
 });
 
+// chat-app
+
+router.get("/chat-app", (req, res, next) => {
+  res.render("chat-app");
+});
+
 module.exports = router;
