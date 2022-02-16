@@ -1,3 +1,4 @@
+const isLoggedIn = require("../middleware/isLoggedIn");
 const router = require("express").Router();
 const User = require("../models/User.model");
 const Tool = require("../models/Tool.model");
@@ -13,7 +14,7 @@ router.get('/', (req, res, next) => {
 })
 
 // Show Profile
-router.get("/profile", (req, res, next) => {
+router.get("/profile", isLoggedIn, (req, res, next) => {
   const id = req.session.user._id;
   User.findById(id)
       .populate('toolsAvailable')
@@ -24,7 +25,7 @@ router.get("/profile", (req, res, next) => {
 });
 
 // Edit Profile
-router.get("/profile/edit", (req, res, next) => {
+router.get("/profile/edit", isLoggedIn, (req, res, next) => {
   const id = req.session.user._id;
   User.findById(id, function(req1, currentUser) {
     Tool.find({}, function(req2, toolsFromDb) {
@@ -50,34 +51,40 @@ router.post("/profile/edit", fileUploader.single('profilePicture'), (req, res, n
 
 
 // Render two collections at the same time, in order to get the tools and also show all the current projects
-router.get('/post-project', function (req, res) {
-  Tool.find({}, function (err, tools) {
-    if (err) {
-      console.log(err)
-    } else {
-      Project.find({}, function (err, projects) {
-        if (err) {
-          console.log(err)
-        } else {
-          res.render('post-project', { projects: projects, tools: tools })
-        }
-      })
-    }
-  })
-})
 
+router.get("/post-project", isLoggedIn, function(req, res) {
+  const user = req.session.user
+  console.log('user: ' ,user._id)
+  const findInit = Project.find().then(projects => {
+    console.log('find init:',projects[0].initiator)
+  })
+  
+  Tool.find({}, function(err, tools) {
+       if(err) {
+            console.log(err);
+       } else {
+            Project.find({ initiator: user._id }, function(err, projects) {
+                 if(err) {
+                      console.log(err)
+                 } else {      
+                      res.render("post-project", {projects: projects, tools: tools});
+                 }  
+            }); 
+       }
+  });
+});
 
 // Add a new project
 
-router.post('/post-project', (req, res, next) => {
-  const { projectname, description, toolsNeeded } = req.body
+router.post('/post-project', isLoggedIn, (req, res, next) => {
+  const { projectname, description, toolsNeeded, initiator } = req.body
   const user = req.session.user
 
   console.log('test: ', req.file)
 
-  Project.create({ projectname, description, toolsNeeded })
-    .then((tool) => {
-      console.log('Created Tool: ', tool)
+  Project.create({ projectname, description, toolsNeeded, initiator: user._id  })
+    .then(tool => {
+      console.log('Created Tool: ',tool)
       res.redirect('/post-project')
     })
     .catch((err) => next(err))
@@ -85,15 +92,15 @@ router.post('/post-project', (req, res, next) => {
 
 // Delete a project from the board
 
-router.get('/post-project/delete/:id', (req, res, next) => {
-  const id = req.params.id
-  Project.findByIdAndDelete(id)
-    .then((deletedProject) => {
-      console.log(deletedProject)
-      res.redirect('/post-project')
-    })
-    .catch((err) => next(err))
-})
+router.get('/post-project/delete/:id', isLoggedIn, (req, res, next) => {
+	const id = req.params.id
+	Project.findByIdAndDelete(id)
+		.then(deletedProject => {
+			console.log(deletedProject)
+			res.redirect('/post-project')
+		})
+		.catch(err => next(err))
+});
 
 // view details of the project
 
@@ -154,23 +161,13 @@ router.post('/post-project/update/:id', (req, res, next) => {
 })
 
 
-router.get('/matches', (req, res, next) => {
+router.get('/matches', isLoggedIn, (req, res, next) => {
   Tool.find().then((allTools) => {
     res.render('matches', { allTools })
   })
 })
 
-// chat-app
-
-router.get("/chat-app", (req, res, next) => {
-  Msg.find()
-  .then(msg => {
-    res.render("chat-app", {msg});
-  })  
-});
-
-module.exports = router;
-router.get('/match', (req, res, next) => {
+router.get('/match', isLoggedIn, (req, res, next) => {
   const tool = req.query.match
   console.log(tool)
   Tool.find({ name: tool })
