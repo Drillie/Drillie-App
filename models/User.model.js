@@ -13,18 +13,18 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
-    imageURL: {
+    imageUrl: {
       type: String,
-      default: ''
+      default: '/images/profile_default.jpeg'
     },
-    phoneNumber: Number,
+    phone: Number,
     location: String,
     toolsAvailable: [{          // choose out of the Tools DB that was initiated in seed.js
       type: Schema.Types.ObjectId,
       ref: 'Tool'
     }],
     reviews: String,
-    offer: String
+    offer: String,
   }
 );
 

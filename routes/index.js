@@ -33,6 +33,21 @@ router.get("/profile/edit", (req, res, next) => {
   })
 });
 
+// Edit Profile - Upload Picture with Cloudinary
+router.post("/profile/edit", fileUploader.single('profilePicture'), (req, res, next) => {
+  const id = req.session.user._id;
+  const { phone, location, offer, toolsAvailable, existingImage } = req.body;
+  let imageUrl;
+  if (req.file) {
+    imageUrl = req.file.path;
+  } else {
+    imageUrl = existingImage;
+  }
+  User.findByIdAndUpdate(id, { phone, location, offer, toolsAvailable, imageUrl }, { new: true })
+      .then(() => res.redirect('/profile')) 
+      .catch(err => next(err))
+})
+
 
 // Render two collections at the same time, in order to get the tools and also show all the current projects
 router.get('/post-project', function (req, res) {
