@@ -19,14 +19,23 @@ router.get("/profile", (req, res, next) => {
 // Render two collections at the same time, in order to get the tools and also show all the current projects
 
 router.get("/post-project", function(req, res) {
+  const user = req.session.user
+  console.log('user: ' ,user._id)
+  const findInit = Project.find().then(projects => {
+    console.log('find init:',projects[0].owner)
+  })
+  
+
+  
   Tool.find({}, function(err, tools) {
        if(err) {
             console.log(err);
        } else {
-            Project.find({}, function(err, projects) {
+            Project.find({ owner: user._id }, function(err, projects) {
                  if(err) {
                       console.log(err)
                  } else {
+                      //console.log('Initiator: ', projects.initiator)
                       res.render("post-project", {projects: projects, tools: tools});
                  }  
             }); 
@@ -37,12 +46,12 @@ router.get("/post-project", function(req, res) {
 // Add a new project
 
 router.post('/post-project', (req, res, next) => {
-  const { projectname, description, toolsNeeded } = req.body
+  const { projectname, description, toolsNeeded, owner } = req.body
   const user = req.session.user
 
   console.log('test: ', req.file)
 
-  Project.create({ projectname, description, toolsNeeded  })
+  Project.create({ projectname, description, toolsNeeded, owner: user._id  })
     .then(tool => {
       console.log('Created Tool: ',tool)
       res.redirect('/post-project')
