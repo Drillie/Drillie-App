@@ -1,14 +1,14 @@
-<div class="flexcontainer">
+<div class="flexcontainer padding">
 <h1>Add new Projects</h1>
-
+<div class="padding">
 <h3>Current Projects</h3>
-
+</div>
 {{#each projects}}
    <div class="projectContainer">
       <h4>{{projectname}}</h4>
       <div class="buttonContainer">
-         <button class="viewDetails"><a href="/post-project/{{_id}}">View Details</a></button>
-         <button class="edit"><a href="/post-project/edit/{{_id}}">Edit</a></button>
+         <button class="btn-edit-project"><a href="/post-project/{{_id}}">View Details</a></button>
+         <button class="btn-edit-project"><a href="/post-project/edit/{{_id}}">Edit</a></button>
          {{!-- <button> <a href="/chat-app/{{_id}}">Chat</a></button> --}}
       </div>      
       <div class="close2"><a href="/post-project/delete/{{_id}}">+</a></div>
