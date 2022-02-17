@@ -1,41 +1,46 @@
-<h1>Update Your Profile</h1>
-
-{{#with userToBeEdited}}
-<form action="" method="POST" enctype="multipart/form-data">
-
-    <label>Upload a Profile Picture: </label>
-    <input type="file" name="profilePicture"/>
-    <input type="text" name="existingImage" hidden value="{{imageUrl}}">
-    
-    <label for="username">Username: </label>
-    <input type="text" name="username" value="{{username}}">
-    <br>
-    <label for="email">E-Mail: </label>
-    <input type="email" name="email" value="{{email}}">
-    <br>
-    <label for="location">Location: </label>
-    <input type="text" name="location" value="{{location}}">
-    <br>
-    <label for="phone">Phone: </label>
-    <input type="text" name="phone" value="{{phone}}">
-    <br>
-
-    <label for="offer">I am offering: </label> <br>
-    <input type="radio" name="offer" value="I offer my helping Hands"> I offer my helping Hands<br>
-    <input type="radio" name="offer" value="Can give you Hands&Tools"> Can give you Hands&Tools <br>
-    <input type="radio" name="offer" value="Borrow my Tools and return them"> Borrow my Tools and return them<br>
-    
-{{/with}}
-  <h3>Tools:</h3>
-  {{!-- tools = toolsFromDb definiert in profile GET im index.js --}}
-        {{#each tools}}
-        <input type="checkbox" name="tools" value="{{name}}"> {{name}}
-        {{/each}}
-    
-    {{!-- <select name="toolsAvailable" id="tools" multiple>
-        {{#each tools}}
-        <option value="{{name}}">{{name}}</option>
-        {{/each}}
-    </select> --}}
-    <button type="submit">Save Changes</button>
-</form>
+<div class="container1">
+    {{#with userToBeEdited}}
+    <form class="edit" action="" method="POST" enctype="multipart/form-data">
+        <h1 class="title">Update Your Profile</h1>
+        <div class="container2">
+            <div class="datainput">
+                <h3>Personal Data: </h2><br>
+                <label>Upload a Profile Picture: </label>
+                <br>
+                <input type="file" name="profilePicture"/>
+                <input type="text" name="existingImage" value="{{imageUrl}}">
+                <br>
+                <label for="username">Username: </label>
+                <input class="input" type="text" name="username" value="{{username}}">
+                <br>
+                <label for="email">E-Mail: </label>
+                <input class="input" type="email" name="email" value="{{email}}">
+                <br>
+                <label for="location">Location: </label>
+                <input class="input" type="text" name="location" value="{{location}}">
+                <br>
+                <label for="phone">Phone: </label>
+                <input class="input" type="text" name="phone" value="{{phone}}">
+                <br>
+            </div>
+            <div class="datainput">
+                <h3>I am offering: </h3><br>
+                <input type="radio" name="offer" value="I offer my helping Hands"> I offer my helping Hands<br>
+                <input type="radio" name="offer" value="Can give you Hands&Tools"> Can give you Hands&Tools <br>
+                <input type="radio" name="offer" value="Borrow my Tools and return them"> Borrow my Tools and return them<br>
+        {{/with}}
+                <br><h3>Tools:</h3>
+                    {{!-- tools = toolsFromDb definiert in profile GET im index.js --}}
+                    {{#each tools}}
+                    <input type="checkbox" name="tools" value="{{name}}"> {{name}}
+                    {{/each}}
+            </div>
+        </div>
+        {{!-- <select name="toolsAvailable" id="tools" multiple>
+            {{#each tools}}
+            <option value="{{name}}">{{name}}</option>
+            {{/each}}
+        </select> --}}
+        <button class="btn-add-project" type="submit">Save Changes</button>
+    </form>
+</div>
