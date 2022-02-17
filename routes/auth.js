@@ -28,11 +28,11 @@ router.post('/signup', isLoggedOut, (req, res) => {
   if (!email) {
     return res
       .status(400)
-      .render('auth/signup', { errorMessage: 'Please provide your E-Mail.', layout: false })
+      .render('auth/login', { errorMessage: 'Please provide your E-Mail.', layout: false })
   }
 
   if (password.length < 3) {
-    return res.status(400).render('auth/signup', {
+    return res.status(400).render('auth/login', {
       errorMessage: 'Your password needs to be at least 8 characters long.', layout: false
     })
   }
@@ -55,7 +55,7 @@ router.post('/signup', isLoggedOut, (req, res) => {
     if (found) {
       return res
         .status(400)
-        .render('auth/signup', { errorMessage: 'E-Mail already taken.', layout: false })
+        .render('auth/login', { errorMessage: 'E-Mail already taken.', layout: false })
     }
 
     // if user is not found, create a new user - start with hashing the password
@@ -81,17 +81,17 @@ router.post('/signup', isLoggedOut, (req, res) => {
         if (error instanceof mongoose.Error.ValidationError) {
           return res
             .status(400)
-            .render('auth/signup', { errorMessage: error.message, layout: false })
+            .render('auth/login', { errorMessage: error.message, layout: false })
         }
         if (error.code === 11000) {
-          return res.status(400).render('auth/signup', {
+          return res.status(400).render('auth/login', {
             errorMessage:
               'Name needs to be unique. The Username you chose is already in use.', layout: false
           })
         }
         return res
           .status(500)
-          .render('auth/signup', { errorMessage: error.message, layout: false })
+          .render('auth/login', { errorMessage: error.message, layout: false })
       })
   })
 })
