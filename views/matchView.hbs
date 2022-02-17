@@ -1,0 +1,5 @@
+<h2>Your matched projects</h2>
+{{#each matchedProject.matches}}
+  {{this.projectname}}
+  <a href='/chat-app/{{this._id}}'>Chat</a>
+{{/each}}
