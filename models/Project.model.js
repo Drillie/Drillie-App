@@ -23,7 +23,11 @@ const projectSchema = new Schema(
     created: {
         type: Date,
         default: Date.now
-    }
+    },
+    messages: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Chat'
+    }]
   }
 );
 

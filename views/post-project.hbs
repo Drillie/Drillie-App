@@ -16,6 +16,30 @@
 
 <button id="addProjectButton">Add new Project</button>
 
+{{!-- Custom dropdown --}}
+
+<div class="multi-selector">
+
+     <div class="select-field">
+<input type="text" name="" placeholder="Choose tasks" id="" class="input-selector">
+     <span class="down-arrow">&blacktriangledown;</span>
+     </div>
+<!---------List of checkboxes and options----------->
+     <div class="list">
+        {{#each tools}}
+        <label for="task1" class="task">
+            <input type="checkbox" name="" id="task1">
+            {{name}}
+            <span>10 mins</span>
+     </label>
+
+        {{/each}}
+
+     </div>
+
+
+    </div> 
+
 {{!-- Modal Section --}}
 
 {{!-- Add project modal --}}

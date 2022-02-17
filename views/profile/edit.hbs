@@ -1,0 +1,37 @@
+<h1>Update Your Profile</h1>
+
+{{#with userToBeEdited}}
+<form action="" method="POST" enctype="multipart/form-data">
+
+    <label>Upload a Profile Picture: </label>
+    <input type="file" name="profilePicture"/>
+    <input type="text" name="existingImage" hidden value="{{imageUrl}}">
+    
+    <h3>Name: {{username}}</h3>
+    <h3>E-Mail: {{email}}</h3>
+
+    <label for="location">Location: </label>
+    <input type="text" name="location" value="{{location}}">
+    <br>
+    <label for="phone">Phone: </label>
+    <input type="text" name="phone" value="{{phone}}">
+    <br>
+
+    <label for="offer">I am offering: </label> <br>
+    <input type="radio" name="offer" value="I offer my helping Hands"> I offer my helping Hands<br>
+    <input type="radio" name="offer" value="Can give you Hands&Tools"> Can give you Hands&Tools <br>
+    <input type="radio" name="offer" value="Borrow my Tools and return them"> Borrow my Tools and return them<br>
+    
+{{/with}}
+  <h3>Tools:</h3>
+        {{#each tools}}
+        <input type="radio" name="toolsAvailable" value="{{name}}" multiple> {{name}}
+        {{/each}}
+    
+    {{!-- <select name="toolsAvailable" id="tools" multiple>
+        {{#each tools}}
+        <option value="{{name}}">{{name}}</option>
+        {{/each}}
+    </select> --}}
+    <button type="submit">Save Changes</button>
+</form>

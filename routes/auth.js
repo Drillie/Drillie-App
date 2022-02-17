@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const Tool = require('../models/Tool.model')
 
+
 // ℹ️ Handles password encryption
 const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
@@ -68,6 +69,7 @@ router.post('/signup', isLoggedOut, (req, res) => {
           email,
           password: hashedPassword,
           toolsAvailable,
+
         })
       })
       .then((user) => {
@@ -146,9 +148,11 @@ router.post('/login', isLoggedOut, (req, res, next) => {
     })
 })
 
+
 //logout
-router.get('/logout', (req, res, next) => {
+router.get('/logout', isLoggedIn, (req, res, next) => {
   req.session.destroy()
   res.redirect('/login')
 })
+
 module.exports = router
