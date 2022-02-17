@@ -48,12 +48,20 @@ padding: 2%;
 padding-top: 20%;
 }
 .offering {
-padding-top: 5%;
+padding: 5%;
 }
 .profiledata{
     padding: 5%;
     background-color: rgba(255, 99, 71, 0.733);
-    border-radius: 13px;
+    border-radius: 13px 13 px 0px 0px;
+}
+.frame{
+border: solid 5px;
+border-color: rgba(255, 99, 71, 0.733);
+border-radius: 13px;
+display: flex;
+flex-direction: row;
+width: 1000px;
 }
 
 .display {
