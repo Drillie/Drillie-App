@@ -14,30 +14,54 @@
 		<div class="card__inner">
 			<div class="card__face card__face--front">
         <div class="signinFormContainer">
-          <form action='/login' method='POST'>
+
+          <form class="signinFormContainer" action='/login' method='POST'>
               <input class="loginInput" style="border:none" type='email' name='email' placeholder='E-Mail' required/>
-              <input type='password' name='password' placeholder='Password'/>
-              <button type='submit'>Log in</button>
+              <input class="loginInput" style="border:none"type='password' name='password' placeholder='Password'/>
+              <button class="loginSubmit" style="border:none"type='submit'>Log in</button>
+
           </form>
           <p class="flipCard">Don't have an account sign up here</p>
           
         </div>				
 			</div>
 			<div class="card__face card__face--back">
-				<div class="card__content">
+				<div class="card__content">       
             <div class="signinFormContainer">
-              <form action='/signup' method='POST'>
-              <input class="loginInput" type='text' name='username' placeholder='Username' required/>
-              <input type='email' name='email' placeholder='E-Mail' required/>
-              <input type='password' name='password' placeholder='Password'/>
-              <select name='toolsAvailable' id='toolsAvailable' multiple>
+
+              <form class="signinFormContainer" action='/signup' method='POST'>
+              <input class="loginInput" style="border:none" type='text' name='username' placeholder='Username' required/>
+              <input class="loginInput" type='email' style="border:none" name='email' placeholder='E-Mail' required/>
+              <input class="loginInput"  type='password' style="border:none" name='password' placeholder='Password'/>
+              <select class="dropdown" style="border:none" name='toolsAvailable' id='toolsAvailable' multiple>
                   {{#each tools}}
-                    <option value='{{_id}}'>{{name}}</option>
+                    <option  value='{{_id}}'>{{name}}</option>
                   {{/each}}
               </select>
-              <button type='submit'>Sign up</button>
+              <button class="loginSubmit" style="border:none" type='submit'>Sign up</button>
+
               </form>
+              {{!-- The custon dropdown does not work because it can´t handle type: Schema.Types.ObjectId --}}
+
+              {{!-- <div class="multi-selector">
+              <div class="select-field">
+               <input type="text" name="" placeholder="Choose tasks" id="" class="input-selector">
+              <span class="down-arrow">&blacktriangledown;</span>
+              </div>
+         <!---------List of checkboxes and options----------->
+              <div class="list">
+                 {{#each tools}}
+                  <label for="task1" class="task">
+                     <input type="checkbox" name="toolsAvailable" value="{{_id}}">
+                     {{name}}
+                     <span>10 mins</span>
+                  </label>
+                 {{/each}}
+              </div> --}}
+
               <p class="flipCard2">Have an account? Log in here</p>
+         </div>
+
     
             </div>					
 					</div>
@@ -53,7 +77,9 @@
   {{errorMessage}}
 {{/if}}
 
+<script src="/js/customDropDown.js"></script>
 <script src="/js/flipAnimation.js"></script>
+
 
 </body>
 </html>

@@ -73,7 +73,7 @@ router.get('/post-project', isLoggedIn, function (req, res) {
   const user = req.session.user
   console.log('user: ', user._id)
   const findInit = Project.find().then((projects) => {
-    console.log('find init:', projects[0].initiator)
+    //console.log('find init:',projects[0].initiator)
   })
 
   Tool.find({}, function (err, tools) {
@@ -156,10 +156,28 @@ router.get('/post-project/edit/:id', (req, res, next) => {
   const projects = Project.findById(id).populate('toolsNeeded')
   const tools = Tool.find()
 
+  // make sure that all the tolls which where selected before are maked
+
   Promise.all([projects, tools])
     .then((data) => {
+      let options = ''
+      let selected = 'selected'
       const [projects, tools] = data
-      res.render('project-edit', { projects, tools })
+
+      tools.forEach((tool) => {
+        selected = projects.toolsNeeded
+          .map((el) => el._id.toString())
+          .includes(tool._id.toString())
+          ? 'selected'
+          : ''
+        options += `<option value="${tool._id}" ${selected} > ${tool.name} </option>`
+        console.log('tool ID: ', [tool._id.toString()])
+        console.log(
+          'needed: ',
+          projects.toolsNeeded.map((el) => el._id.toString())
+        )
+      })
+      res.render('project-edit', { projects, options })
     })
     .catch((err) => next(err))
 })
