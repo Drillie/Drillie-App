@@ -1,9 +1,4 @@
-<form action='/match' method='GET'>
-  <label for='match'> Look for a match </label>
-  <select name='match'>
-    {{#each allProject}}
-      <option value='{{projectname}}'>{{projectname}}</option>
-    {{/each}}
-  </select>
-  <button type='submit'>Search</button>
-</form>
+<h2>Find a match for the projects</h2>
+{{#each allProject}}
+  <h4> <a href='/match/{{_id}}'>{{projectname}}</a> </h4>
+{{/each}}
