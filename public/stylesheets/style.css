@@ -418,6 +418,18 @@ select {
   margin-bottom: 2rem;
   text-decoration: none;
 }
+article {
+  padding: 2rem;
+}
+article div {
+  margin-bottom: 2rem;
+}
+@media only screen and (min-width: 600px) {
+  article {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 
 input.loginInput,
 textarea {
