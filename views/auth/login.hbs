@@ -14,10 +14,12 @@
 		<div class="card__inner">
 			<div class="card__face card__face--front">
         <div class="signinFormContainer">
+
           <form class="signinFormContainer" action='/login' method='POST'>
               <input class="loginInput" style="border:none" type='email' name='email' placeholder='E-Mail' required/>
               <input class="loginInput" style="border:none"type='password' name='password' placeholder='Password'/>
               <button class="loginSubmit" style="border:none"type='submit'>Log in</button>
+
           </form>
           <p class="flipCard">Don't have an account sign up here</p>
           
@@ -26,6 +28,7 @@
 			<div class="card__face card__face--back">
 				<div class="card__content">       
             <div class="signinFormContainer">
+
               <form class="signinFormContainer" action='/signup' method='POST'>
               <input class="loginInput" style="border:none" type='text' name='username' placeholder='Username' required/>
               <input class="loginInput" type='email' style="border:none" name='email' placeholder='E-Mail' required/>
@@ -36,6 +39,7 @@
                   {{/each}}
               </select>
               <button class="loginSubmit" style="border:none" type='submit'>Sign up</button>
+
               </form>
               {{!-- The custon dropdown does not work because it can´t handle type: Schema.Types.ObjectId --}}
 
@@ -54,10 +58,10 @@
                   </label>
                  {{/each}}
               </div> --}}
+
               <p class="flipCard2">Have an account? Log in here</p>
          </div>
-              
-              
+
     
             </div>					
 					</div>

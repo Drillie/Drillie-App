@@ -195,6 +195,7 @@ select {
   align-items: center;
   flex-direction: column;
 
+
 }
 
 /* Login card animation */
@@ -365,4 +366,5 @@ select {
 }
 
 input.loginInput, textarea { background: rgb(230, 230, 230); }
+
 
