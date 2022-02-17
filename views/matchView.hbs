@@ -1,5 +1,11 @@
-<h2>Your matched projects</h2>
-{{#each matchedProject.matches}}
-  {{this.projectname}}
-  <a href='/chat-app/{{this._id}}'>Chat</a>
-{{/each}}
+<div>
+  <h2>Your matched projects </h2>
+  <article>
+    {{#each matchedProject.matches}}
+      <div>
+        <h5> {{this.projectname}}</h5>
+        <a href='/chat-app/{{this._id}}'>Chat</a>
+      </div>
+    {{/each}}
+  </article>
+</div>
