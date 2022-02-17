@@ -9,6 +9,12 @@ display: flex;
 flex-direction: row;
 }
 
+.flexcontainer {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
 nav {
 padding: 1%;
 color: rgba(255,110,0,1);
