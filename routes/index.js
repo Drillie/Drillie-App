@@ -156,13 +156,24 @@ router.get('/post-project/edit/:id', (req, res, next) => {
   const projects = Project.findById(id).populate('toolsNeeded')
   const tools = Tool.find()
 
-  Promise.all([projects, tools])
-    .then((data) => {
-      const [projects, tools] = data
-      res.render('project-edit', { projects, tools })
-    })
-    .catch((err) => next(err))
-})
+  // make sure that all the tolls which where selected before are maked
+
+  Promise.all([projects, tools]).then(data => {
+    let options = ''
+		let selected = 'selected'
+    const [projects, tools] = data;
+    
+
+    tools.forEach(tool => {
+			selected = projects.toolsNeeded.map(el => el._id.toString()).includes(tool._id.toString()) ? 'selected' : '';			
+			options += `<option value="${tool._id}" ${selected} > ${tool.name} </option>`
+      console.log('tool ID: ', [tool._id.toString()]);
+      console.log('needed: ', projects.toolsNeeded.map(el => el._id.toString()))
+		})
+    res.render('project-edit', { projects, options })
+  })
+  .catch(err => next(err))		
+});
 
 router.post('/post-project/update/:id', (req, res, next) => {
   const { projectname, description, toolsNeeded } = req.body
