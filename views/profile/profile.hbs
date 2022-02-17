@@ -14,16 +14,15 @@
 
 <h3>Tools:</h3>
 <ul>
-{{#each userDetails.toolsAvailable}}
+  {{#each userDetails.toolsAvailable}}
     <h3>{{name}}</h3>
-{{/each}}
+  {{/each}}
 </ul>
 
 <h3>Reviews To Be Added...</h3>
 
-<form action="/profile/edit" method="GET">
-    <button type="submit">Edit</button>
- </form>
 
-
+<form action='/profile/edit' method='GET'>
+  <button type='submit'>Edit</button>
+</form>
 

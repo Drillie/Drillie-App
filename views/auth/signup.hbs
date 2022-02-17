@@ -1,18 +1,16 @@
-<div id='form'>
-  <form action='/signup' method='POST'>
-    <input type='text' name='username' placeholder='Username' required/>
-    <input type='email' name='email' placeholder='E-Mail' required/>
-    <input type='password' name='password' placeholder='Password'/>
-    <select name='tools'>
-      {{#each tools}}
-        <option value='{{_id}}'>{{name}}</option>
-      {{/each}}
-    </select>
-    <button type='submit'>Sign up</button>
-  </form>
-  <p>Have an account?</p>
-  <a href='/login'>Log in here</a>
-</div>
+<form action='/signup' method='POST'>
+  <input type='text' name='username' placeholder='Username' required />
+  <input type='email' name='email' placeholder='E-Mail' required />
+  <input type='password' name='password' placeholder='Password' />
+  <select name='toolsAvailable' id='toolsAvailable' multiple>
+    {{#each tools}}
+      <option value='{{_id}}'>{{name}}</option>
+    {{/each}}
+  </select>
+  <button type='submit'>Sign up</button>
+</form>
+<p>Have an account?</p>
+<a href='/login'>Log in here</a>
 
 {{#if errorMessage}}
   {{errorMessage}}

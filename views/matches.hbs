@@ -1,13 +1,9 @@
-<h1>Your Matches</h1>
 <form action='/match' method='GET'>
   <label for='match'> Look for a match </label>
-
-  <select name='match' multiple>
-    {{#each allTools}}
-      <option value='{{name}}'>{{name}}</option>
-
+  <select name='match'>
+    {{#each allProject}}
+      <option value='{{projectname}}'>{{projectname}}</option>
     {{/each}}
   </select>
-
   <button type='submit'>Search</button>
 </form>

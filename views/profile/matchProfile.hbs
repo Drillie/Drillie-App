@@ -1,0 +1,17 @@
+{{#with match}}
+  name:
+  {{this.username}}
+  email:
+  {{this.email}}
+
+  <img
+    src='
+  {{imageUrl}}'
+    alt=''
+  />
+  Tools:
+  {{#each toolsAvailable}}
+    {{name}}
+  {{/each}}
+
+{{/with}}

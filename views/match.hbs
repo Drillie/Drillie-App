@@ -1,6 +1,9 @@
 <h1>Your matches</h1>
-{{#each foundMatches}}
-  <h2>Project-Name: {{this.projectname}}</h2>
-  <h4>Project-Description: {{this.description}}</h4>
+{{#each users}}
+  <img src='{{this.imageURL}}' alt='profile-picture' />
+  <h4>name: {{this.username}}</h4>
 
+  <div><a href='#'>message</a>
+    <a href='/matchProfile/{{_id}}'>View Profile</a>
+  </div>
 {{/each}}

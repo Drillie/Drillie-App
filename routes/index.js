@@ -67,6 +67,23 @@ router.get('/post-project', function (req, res) {
 })
 
 
+router.get('/post-project', function (req, res) {
+  Tool.find({}, function (err, tools) {
+    if (err) {
+      console.log(err)
+    } else {
+      Project.find({}, function (err, projects) {
+        if (err) {
+          console.log(err)
+        } else {
+          res.render('post-project', { projects: projects, tools: tools })
+        }
+      })
+    }
+  })
+})
+
+
 // Add a new project
 
 router.post('/post-project', (req, res, next) => {
@@ -135,6 +152,7 @@ router.get('/post-project/edit/:id', (req, res, next) => {
   .catch(err => next(err))		
 });
 
+
 router.post('/post-project/update/:id', (req, res, next) => {
   const { projectname, description, toolsNeeded } = req.body
   // by passing {new true} as a third param findByIdAndUpdate returns
@@ -154,6 +172,29 @@ router.post('/post-project/update/:id', (req, res, next) => {
 })
 
 
+
+// Select projects from the matches page
+
+router.get('/matches', (req, res, next) => {
+  Project.find().then((allProject) => {
+    res.render('matches', { allProject })
+  })
+})
+
+// match the project selected to a user toolAvailable
+router.get('/match', (req, res, next) => {
+  const projectname = req.query.match
+  console.log(projectname)
+  Project.findOne({ projectname: projectname })
+
+    .then((project) => {
+      console.log(project.toolsNeeded)
+      const toolsNeeded = project.toolsNeeded
+      User.find({ toolsAvailable: { $all: toolsNeeded } }).then((users) => {
+        console.log(users)
+        res.render('match', { users: users })
+
+
 router.get('/matches', (req, res, next) => {
   Tool.find().then((allTools) => {
     res.render('matches', { allTools })
@@ -169,25 +210,20 @@ router.get("/chat-app", (req, res, next) => {
   })  
 });
 
-module.exports = router;
-router.get('/match', (req, res, next) => {
-  const tool = req.query.match
-  console.log(tool)
-  Tool.find({ name: tool })
 
-    .then((matches) => {
-      console.log(matches)
-      matches.forEach((match) => {
-        let id = mongoose.Types.ObjectId(match._id)
-        Project.find({ toolsNeeded: { $in: [id] } }).then((foundMatches) => {
-          console.log(`this is the found: ${foundMatches}`)
-          res.render('match', { foundMatches })
-        })
-      })
+// get the match profile
+router.get('/matchProfile/:id', (req, res, next) => {
+  const id = req.params.id
+  User.findById(id)
+    .populate('toolsAvailable')
+    .then((match) => {
+      console.log(match)
+      res.render('profile/matchProfile', { match })
     })
     .catch((err) => {
       next(err)
     })
 })
+
 
 module.exports = router
