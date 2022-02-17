@@ -1,36 +1,37 @@
-{{#each msg}}
-  {{this.msg}}
-{{/each}}
 
-
-<h1>{{project.projectname}}</h1>
 
 
   <head>
     <title>Socket.IO chat</title>
     <style>
-      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      {{!-- body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; } --}}
 
-      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #form { border-radius: 2rem; position:absolute ; width: 80%;  background: rgba(0, 0, 0, 0.15); padding: 0.25rem; bottom: 50px; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
       #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
       #input:focus { outline: none; }
-      #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
+      #form > button { border-radius: 2rem; background: #333; border: none; padding: 0 1rem; margin: 0.25rem; outline: none; color: #fff; }
 
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages > li { padding: 0.5rem 1rem; }
+      #messages { width: 80%; top: 150px; list-style-type: none; margin: 0; padding: 0; position: absolute;}
+      #messages > li { padding: 0.5rem 1rem; border-radius: 2rem;}
       #messages > li:nth-child(odd) { background: #efefef; }
+      #messages > li:nth-child(even) { color: white }
+      .chat-headline {top: 50px; position:absolute;}
     </style>
   </head>
-  <body>
+  {{!-- <body class="chat-app"> --}}
+<div class="chat-app">
+   <h1 class="chat-headline">{{project.projectname}}</h1>
     <ul id="messages"></ul>
     <form id="form" action="/chat-app/{{project._id}}" method="POST">
       <input type="text" id="input" autocomplete="off" name="msg" /><button type="submit">Send</button>
     </form>
+</div>
+   
   
-  </body>
+  {{!-- </body> --}}
 
 
-  <form action="/chat-app/{{project._id}}" method="post">
+  {{!-- <form action="/chat-app/{{project._id}}" method="post">
     <input type="text" name="msg">
     <button type="submit">Submit</button>
-  </form>
+  </form> --}}
