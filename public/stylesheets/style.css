@@ -321,3 +321,15 @@ h1 {
   line-height: 1.4;
 }
 
+
+/* login input field */
+
+.loginInput {
+  width: 180px;
+  border-radius: 50px;
+  outline: none;
+  background-color: #00b7ff#;
+}
+
+
+input.loginInput, textarea { background: rgb(230, 230, 230); }
