@@ -462,6 +462,15 @@ textarea {
 
   
 }
+.dashboard-h {
+  text-align: center;
+}
+.match-img {
+  display: block;
+  width: 10rem;
+  height: 5rem;
+  object-fit: contain;
+}
 
 .btn-edit-project a {
   color: #ff6e00;
