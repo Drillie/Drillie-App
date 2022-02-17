@@ -368,6 +368,37 @@ select {
   border-radius: 20px;
   scrollbar-width: none;
 }
+/* hide match input * (a quick fix)*/
+.hide-input {
+  display: none;
+}
+/* connect button styling*/
+#connect-btn {
+  background-color: #ff6e00;
+  border: none;
+  color: white;
+  padding: 8px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 2px;
+  transition: 2s ease-in-out;
+  margin-bottom: 2rem;
+}
+#connect-btn:hover {
+  background-color: #ffc100;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.match-chat {
+  margin: 1rem;
+}
+.match-chat a {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
 
 input.loginInput,
 textarea {
