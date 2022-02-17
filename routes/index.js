@@ -71,9 +71,9 @@ router.post(
 
 router.get('/post-project', isLoggedIn, function (req, res) {
   const user = req.session.user
-  console.log('user: ', user._id)
-  const findInit = Project.find().then((projects) => {
-    console.log('find init:', projects[0].initiator)
+  console.log('user: ' ,user._id)
+  const findInit = Project.find().then(projects => {
+    //console.log('find init:',projects[0].initiator)
   })
 
   Tool.find({}, function (err, tools) {

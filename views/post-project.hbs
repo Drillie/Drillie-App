@@ -19,10 +19,9 @@
 
 {{!-- Custom dropdown --}}
 
-<div class="multi-selector">
-
+{{!-- <div class="multi-selector">
      <div class="select-field">
-<input type="text" name="" placeholder="Choose tasks" id="" class="input-selector">
+      <input type="text" name="" placeholder="Choose tasks" id="" class="input-selector">
      <span class="down-arrow">&blacktriangledown;</span>
      </div>
 <!---------List of checkboxes and options----------->
@@ -32,14 +31,10 @@
             <input type="checkbox" name="" id="task1">
             {{name}}
             <span>10 mins</span>
-     </label>
-
+         </label>
         {{/each}}
-
      </div>
-
-
-    </div> 
+</div>  --}}
 
 {{!-- Modal Section --}}
 
@@ -55,6 +50,24 @@
          <label for="description">Description</label>
          <input type="text" name="description" id="description">
          <label for="toolsNeeded">Required Tools</label>
+         {{!-- The custon dropdown does not work because it can´t handle type: Schema.Types.ObjectId --}}
+         
+         {{!-- <div class="multi-selector">
+              <div class="select-field">
+               <input type="text" name="" placeholder="Choose tasks" id="" class="input-selector">
+              <span class="down-arrow">&blacktriangledown;</span>
+              </div>
+         <!---------List of checkboxes and options----------->
+              <div class="list">
+                 {{#each tools}}
+                  <label for="task1" class="task">
+                     <input type="checkbox" name="toolsNeeded" value="{{_id}}">
+                     {{name}}
+                     <span>10 mins</span>
+                  </label>
+                 {{/each}}
+              </div>
+         </div>  --}}
          <select name="toolsNeeded" id="toolsNeeded" multiple="multiple">
              {{#each tools}}
                <option value="{{_id}}">{{name}}</option>
