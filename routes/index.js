@@ -12,6 +12,11 @@ router.get('/', (req, res, next) => {
   res.render('index', { layout: false })
 })
 
+// Display Mapbox
+router.get("/map", (req, res, next) => {
+  res.render('mapbox');
+});
+
 // Show Profile
 router.get("/profile", (req, res, next) => {
   const id = req.session.user._id;
