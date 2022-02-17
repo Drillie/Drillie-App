@@ -6,4 +6,20 @@
   <div><a href='#'>message</a>
     <a href='/matchProfile/{{_id}}'>View Profile</a>
   </div>
+  <form action='/match/{{../id}}' method='post'>
+    <input type='text' name='matchedProject' value='{{../id}}' placeholder='{{../id}}' />
+    <input type='text' name='userId' value='{{_id}}' placeholder='{{_id}}' />
+    <button type='submit'>connect</button>
+  </form>
+
 {{/each}}
+<form action='/match/{{id}}' method='post'>
+  <input type='text' name='match' value='{{id}}' placeholder='{{id}}' />
+  <input
+    type='text'
+    name='userId'
+    value='{{users._id}}'
+    placeholder='{{users._id}}'
+  />
+  <button type='button'>connect</button>
+</form>
