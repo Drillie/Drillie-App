@@ -50,7 +50,9 @@
          <label for="description">Description</label>
          <input type="text" name="description" id="description">
          <label for="toolsNeeded">Required Tools</label>
-         <div class="multi-selector">
+         {{!-- The custon dropdown does not work because it can´t handle type: Schema.Types.ObjectId --}}
+         
+         {{!-- <div class="multi-selector">
               <div class="select-field">
                <input type="text" name="" placeholder="Choose tasks" id="" class="input-selector">
               <span class="down-arrow">&blacktriangledown;</span>
@@ -65,12 +67,12 @@
                   </label>
                  {{/each}}
               </div>
-         </div> 
-         {{!-- <select name="toolsNeeded" id="toolsNeeded" multiple="multiple">
+         </div>  --}}
+         <select name="toolsNeeded" id="toolsNeeded" multiple="multiple">
              {{#each tools}}
                <option value="{{_id}}">{{name}}</option>
             {{/each}}
-         </select> --}}
+         </select>
          <button type="submit">Add this project</button>
       </form>
    </div>   

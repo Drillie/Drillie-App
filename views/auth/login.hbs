@@ -24,13 +24,22 @@
         </div>				
 			</div>
 			<div class="card__face card__face--back">
-				<div class="card__content">
+				<div class="card__content">       
             <div class="signinFormContainer">
               <form action='/signup' method='POST'>
               <input class="loginInput" type='text' name='username' placeholder='Username' required/>
               <input type='email' name='email' placeholder='E-Mail' required/>
               <input type='password' name='password' placeholder='Password'/>
-              <div class="multi-selector">
+              <select name='toolsAvailable' id='toolsAvailable' multiple>
+                  {{#each tools}}
+                    <option value='{{_id}}'>{{name}}</option>
+                  {{/each}}
+              </select>
+              <button type='submit'>Sign up</button>
+              </form>
+              {{!-- The custon dropdown does not work because it can´t handle type: Schema.Types.ObjectId --}}
+
+              {{!-- <div class="multi-selector">
               <div class="select-field">
                <input type="text" name="" placeholder="Choose tasks" id="" class="input-selector">
               <span class="down-arrow">&blacktriangledown;</span>
@@ -44,15 +53,9 @@
                      <span>10 mins</span>
                   </label>
                  {{/each}}
-              </div>
+              </div> --}}
          </div>
-              {{!-- <select name='toolsAvailable' id='toolsAvailable' multiple>
-                  {{#each tools}}
-                    <option value='{{_id}}'>{{name}}</option>
-                  {{/each}}
-              </select> --}}
-              <button type='submit'>Sign up</button>
-              </form>
+              
               <p class="flipCard2">Have an account? Log in here</p>
     
             </div>					
