@@ -414,23 +414,34 @@ select {
   padding: 0.5rem 1rem;
   text-decoration: none;
 }
-.project-srch a {
-  margin-bottom: 2rem;
-  text-decoration: none;
-}
+
 article {
   padding: 2rem;
 }
 article div {
   margin-bottom: 2rem;
 }
+
+.project-src a {
+  text-decoration: none;
+  padding: 0.2rem;
+}
+.project-src h4 {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
 @media only screen and (min-width: 600px) {
   article {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+  .project-src h4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
   }
 }
-
 input.loginInput,
 textarea {
   background: rgb(230, 230, 230);
