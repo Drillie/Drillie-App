@@ -207,4 +207,14 @@ justify-content: space-evenly;
   .list {
       width: 500px;
   }
+  .btn-edit-project {
+    width: 150px;
+    height: 35px;
+    background-color: white;
+    color: rgba(255,110,0,1);
+    font-size: 24px;
+    margin: 10%;
+    border-style: none;
+    border-radius: 13px;
+  }
  
