@@ -30,11 +30,27 @@
               <input class="loginInput" type='text' name='username' placeholder='Username' required/>
               <input type='email' name='email' placeholder='E-Mail' required/>
               <input type='password' name='password' placeholder='Password'/>
-              <select name='toolsAvailable' id='toolsAvailable' multiple>
+              <div class="multi-selector">
+              <div class="select-field">
+               <input type="text" name="" placeholder="Choose tasks" id="" class="input-selector">
+              <span class="down-arrow">&blacktriangledown;</span>
+              </div>
+         <!---------List of checkboxes and options----------->
+              <div class="list">
+                 {{#each tools}}
+                  <label for="task1" class="task">
+                     <input type="checkbox" name="toolsAvailable" value="{{_id}}">
+                     {{name}}
+                     <span>10 mins</span>
+                  </label>
+                 {{/each}}
+              </div>
+         </div>
+              {{!-- <select name='toolsAvailable' id='toolsAvailable' multiple>
                   {{#each tools}}
                     <option value='{{_id}}'>{{name}}</option>
                   {{/each}}
-              </select>
+              </select> --}}
               <button type='submit'>Sign up</button>
               </form>
               <p class="flipCard2">Have an account? Log in here</p>
@@ -53,7 +69,9 @@
   {{errorMessage}}
 {{/if}}
 
+<script src="/js/customDropDown.js"></script>
 <script src="/js/flipAnimation.js"></script>
+
 
 </body>
 </html>
