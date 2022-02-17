@@ -97,7 +97,9 @@ router.post('/signup', isLoggedOut, (req, res) => {
 })
 
 router.get('/login', isLoggedOut, (req, res) => {
-  res.render('auth/login', { layout: false })
+  Tool.find().then((tools) => {
+  res.render('auth/login', { tools: tools, layout: false })
+})
 })
 
 router.post('/login', isLoggedOut, (req, res, next) => {
