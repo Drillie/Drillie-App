@@ -16,10 +16,12 @@ const projectSchema = new Schema(
         // minlength: 150,
         // maxlength: 3000
     },
-    toolsNeeded:[{          // choose out of the Tools DB that was initiated in seed.js
-        type: Schema.Types.ObjectId,
-        ref: 'Tool'
-    }],
+    // still have to check whether this is still required in another position, for the new dropdown we need just a string
+    // toolsNeeded:[{          // choose out of the Tools DB that was initiated in seed.js
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Tool'
+    // }],
+    toolsNeeded:[String],
     created: {
         type: Date,
         default: Date.now
