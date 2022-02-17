@@ -1,4 +1,6 @@
 const router = require('express').Router()
+const Tool = require('../models/Tool.model')
+
 
 // ℹ️ Handles password encryption
 const bcrypt = require('bcrypt')
@@ -15,11 +17,13 @@ const isLoggedOut = require('../middleware/isLoggedOut')
 const isLoggedIn = require('../middleware/isLoggedIn')
 
 router.get('/signup', isLoggedOut, (req, res) => {
-  res.render('auth/signup', { layout: false })
+  Tool.find().then((tools) => {
+    res.render('auth/signup', { tools: tools, layout: false })
+  })
 })
 
 router.post('/signup', isLoggedOut, (req, res) => {
-  const { username, email, password } = req.body
+  const { username, email, password, toolsAvailable } = req.body
 
   if (!email) {
     return res
@@ -64,6 +68,8 @@ router.post('/signup', isLoggedOut, (req, res) => {
           username,
           email,
           password: hashedPassword,
+          toolsAvailable,
+
         })
       })
       .then((user) => {
@@ -142,19 +148,11 @@ router.post('/login', isLoggedOut, (req, res, next) => {
     })
 })
 
-// router.get("/logout", isLoggedIn, (req, res) => {
-//   req.session.destroy((err) => {
-//     if (err) {
-//       return res
-//         .status(500)
-//         .render("auth/logout", { errorMessage: err.message });
-//     }
-//     res.redirect("/login");
-//   });
-// });
-router.get('/logout', (req, res, next) => {
+
+//logout
+router.get('/logout', isLoggedIn, (req, res, next) => {
   req.session.destroy()
-  res.redirect('/')
+  res.redirect('/login')
 })
 
 module.exports = router
