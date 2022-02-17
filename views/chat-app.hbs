@@ -3,6 +3,8 @@
 {{/each}}
 
 
+<h1>{{project.projectname}}</h1>
+
 
   <head>
     <title>Socket.IO chat</title>
@@ -21,8 +23,14 @@
   </head>
   <body>
     <ul id="messages"></ul>
-    <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
+    <form id="form" action="/chat-app/{{project._id}}" method="POST">
+      <input type="text" id="input" autocomplete="off" name="msg" /><button type="submit">Send</button>
     </form>
   
   </body>
+
+
+  <form action="/chat-app/{{project._id}}" method="post">
+    <input type="text" name="msg">
+    <button type="submit">Submit</button>
+  </form>
