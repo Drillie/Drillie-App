@@ -1,16 +1,21 @@
-const router = require("express").Router();
-const User = require("../models/User.model");
-const Tool = require("../models/Tool.model");
-const Project = require("../models/Project.model");
-const Msg = require("../models/Chat.model");
+const router = require('express').Router()
+const User = require('../models/User.model')
+const Tool = require('../models/Tool.model')
+const Project = require('../models/Project.model')
 
-const fileUploader = require('../config/cloudinary.config');
-const MongoStore = require("connect-mongo");
+const mongoose = require('mongoose')
+
+const fileUploader = require('../config/cloudinary.config')
 
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index', { layout: false })
 })
+
+// Display Mapbox
+router.get("/map", (req, res, next) => {
+  res.render('mapbox');
+});
 
 // Show Profile
 router.get("/profile", (req, res, next) => {
@@ -36,14 +41,15 @@ router.get("/profile/edit", (req, res, next) => {
 // Edit Profile - Upload Picture with Cloudinary
 router.post("/profile/edit", fileUploader.single('profilePicture'), (req, res, next) => {
   const id = req.session.user._id;
-  const { phone, location, offer, toolsAvailable, existingImage } = req.body;
+  const { phone, location, offer, tools, existingImage } = req.body;
   let imageUrl;
   if (req.file) {
     imageUrl = req.file.path;
   } else {
     imageUrl = existingImage;
   }
-  User.findByIdAndUpdate(id, { phone, location, offer, toolsAvailable, imageUrl }, { new: true })
+  console.log(tools)
+  User.findByIdAndUpdate(id, { phone, location, offer, tools, imageUrl }, { new: true })
       .then(() => res.redirect('/profile')) 
       .catch(err => next(err))
 })
@@ -133,24 +139,13 @@ router.get('/post-project/edit/:id', (req, res, next) => {
   const projects = Project.findById(id).populate('toolsNeeded')
   const tools = Tool.find()
 
-  // make sure that all the tolls which where selected before are maked
-
-  Promise.all([projects, tools]).then(data => {
-    let options = ''
-		let selected = 'selected'
-    const [projects, tools] = data;
-    
-
-    tools.forEach(tool => {
-			selected = projects.toolsNeeded.map(el => el._id.toString()).includes(tool._id.toString()) ? 'selected' : '';			
-			options += `<option value="${tool._id}" ${selected} > ${tool.name} </option>`
-      // console.log('tool ID: ', [tool._id.toString()]);
-      // console.log('needed: ', projects.toolsNeeded.map(el => el._id.toString()))
-		})
-    res.render('project-edit', { projects, options })
-  })
-  .catch(err => next(err))		
-});
+  Promise.all([projects, tools])
+    .then((data) => {
+      const [projects, tools] = data
+      res.render('project-edit', { projects, tools })
+    })
+    .catch((err) => next(err))
+})
 
 
 router.post('/post-project/update/:id', (req, res, next) => {
@@ -186,23 +181,20 @@ router.get('/match', (req, res, next) => {
   const projectname = req.query.match
   console.log(projectname)
   Project.findOne({ projectname: projectname })
-
     .then((project) => {
       console.log(project.toolsNeeded)
       const toolsNeeded = project.toolsNeeded
       User.find({ toolsAvailable: { $all: toolsNeeded } }).then((users) => {
         console.log(users)
         res.render('match', { users: users })
-
-
-router.get('/matches', (req, res, next) => {
-  Tool.find().then((allTools) => {
-    res.render('matches', { allTools })
-  })
+      })
+    })
+    .catch((err) => {
+      next(err)
+    })
 })
 
 // chat-app
-
 router.get("/chat-app", (req, res, next) => {
   Msg.find()
   .then(msg => {
