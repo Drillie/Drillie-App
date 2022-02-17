@@ -1,5 +1,18 @@
 {{#with userDetails}}
 <div class="display">
+  <div class="frame">
+   <div class="profiledata">
+      <img class="profilepic" src="{{imageUrl}}" alt="Profile Picture">
+      <div class="data">
+        <h3>Name: {{username}}</h3>
+        <h3>Location: {{location}}</h3>
+        <h3>E-Mail: {{email}}</h3>
+        <h3>Phone: {{phone}}</h3>
+      </div>
+      <form action='/profile/edit' method='GET'>
+        <button class="btn-add-project" type='submit'>Edit</button>
+      </form>
+    </div>
       <div class="offering">
         <h3>I am offering:</h3>
         <h3>{{offer}}</h3>
@@ -12,19 +25,7 @@
             <li><h3>{{name}}</h3></li> 
           {{/each}}
         </ul>
-      
     </div>
-    <div class="profiledata">
-      <img class="profilepic" src="{{imageUrl}}" alt="Profile Picture">
-      <div class="data">
-        <h3>Name: {{username}}</h3>
-        <h3>Location: {{location}}</h3>
-        <h3>E-Mail: {{email}}</h3>
-        <h3>Phone: {{phone}}</h3>
-      </div>
-      <form action='/profile/edit' method='GET'>
-        <button class="btn-add-project" type='submit'>Edit</button>
-      </form>
     </div>
 </div>
 {{/with}}

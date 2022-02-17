@@ -1,13 +1,16 @@
+<div class="flexcontainer padding">
 <h1>Edit Project</h1>
-
-<form action="/post-project/update/{{projects._id}}" method="POST">
-    <label for="projectname">Project Name</label>
-    <input type="text" name="projectname" id="projectname" value="{{projects.projectname}}">
+<form class="formstyle" action="/post-project/update/{{projects._id}}" method="POST">
+<div>
+    <label class="inputmargin" for="projectname">Project Name</label>
+    <input  class="input inputmargin" type="text" name="projectname" id="projectname" value="{{projects.projectname}}">
     <label for="description">Description</label>
-    <input type="text" name="description" id="description" value="{{projects.description}}">
-    <label for="toolsNeeded">Required Tools</label>
-    <select name="toolsNeeded" id="toolsNeeded" multiple="multiple">        
+    <input class="input inputmargin" class="input inputmargin" type="text" name="description" id="description" value="{{projects.description}}">
+    <label class="inputmargin" for="toolsNeeded">Required Tools</label>
+    <select  name="toolsNeeded" id="toolsNeeded" multiple="multiple">        
         {{{options}}}       
     </select>
-    <button type="submit">Change this project</button>
+</div>
+    <button class="btn-add-project" type="submit">Change this project</button>
 </form>
+</div>
