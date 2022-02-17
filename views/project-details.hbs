@@ -1,9 +1,10 @@
-<div class="flexcontainer">
+<div class="flexcontainer padding">
 <h1>View Details</h1>
+<div class="spacing padding">
 {{#with projects}}
     <h1>{{projectname}}</h1>
     <p>{{description}}</p>
-    <ul>
+    <ul class="tool-list">
         {{#each toolsNeeded}}
             <li>{{name}}</li>
         {{/each}} 
@@ -15,4 +16,5 @@
 {{!-- {{#each projects}}
     {{toolsNeeded.name}}
 {{/each}}  --}}
+</div>
 </div>
