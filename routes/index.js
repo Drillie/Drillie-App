@@ -184,19 +184,24 @@ router.post('/post-project/update/:id', (req, res, next) => {
 
 // Select projects from the matches page
 
-router.get('/matches', (req, res, next) => {
-  Project.find().then((allProject) => {
+router.get('/matches', isLoggedIn, (req, res, next) => {
+  const user = req.session.user
+  const { initiator } = req.body
+  Project.find({ initiator: user._id }).then((allProject) => {
+    console.log('this is allproject', allProject)
     res.render('matches', { allProject })
   })
 })
 
 // match the project selected to a user toolAvailable
 router.get('/match/:id', (req, res, next) => {
-  const projectname = req.query.match
+  const user = req.session.user
+  const { initiator } = req.body
   const id = req.params.id
-  console.log(projectname)
+
   Project.findById(id)
     .then((project) => {
+      console.log('this is ownedproject', project)
       console.log(project.toolsNeeded)
       const toolsNeeded = project.toolsNeeded
       User.find({ toolsAvailable: { $all: toolsNeeded } }).then((users) => {
@@ -209,7 +214,7 @@ router.get('/match/:id', (req, res, next) => {
       next(err)
     })
 })
-
+// add the project to the user matches
 router.post('/match/:id', (req, res, next) => {
   const { userId, matchedProject } = req.body
   // by passing {new true} as a third param findByIdAndUpdate returns
@@ -222,7 +227,7 @@ router.post('/match/:id', (req, res, next) => {
       },
     }
     // { new: true }
-  ).then((updatedPtoject) => {
+  ).then(() => {
     console.log('userId: ', userId)
     res.redirect(`/match/${matchedProject}`)
   })

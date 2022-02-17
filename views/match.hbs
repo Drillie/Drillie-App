@@ -1,25 +1,26 @@
-<h1>Your matches</h1>
+<h1>Your matches 🔧⚒️⚙️</h1>
 {{#each users}}
   <img src='{{this.imageURL}}' alt='profile-picture' />
-  <h4>name: {{this.username}}</h4>
+  <h4>Name: {{this.username}}</h4>
 
-  <div><a href='#'>message</a>
+  <div class="match-chat"><a href='/chat-app/{{this._id}}'>💬</a>
     <a href='/matchProfile/{{_id}}'>View Profile</a>
   </div>
   <form action='/match/{{../id}}' method='post'>
-    <input type='text' name='matchedProject' value='{{../id}}' placeholder='{{../id}}' />
-    <input type='text' name='userId' value='{{_id}}' placeholder='{{_id}}' />
-    <button type='submit'>connect</button>
+    <input class="hide-input"type='text' name='matchedProject' value='{{../id}}' placeholder='{{../id}}' />
+    <input class="hide-input"type='text' name='userId' value='{{_id}}' placeholder='{{_id}}' />
+    <button type='submit' id="connect-btn">connect</button>
   </form>
 
 {{/each}}
-<form action='/match/{{id}}' method='post'>
-  <input type='text' name='match' value='{{id}}' placeholder='{{id}}' />
+{{!-- <form action='/match/{{id}}' method='post'>
+  <input class="hide-input" type='text' name='match' value='{{id}}' placeholder='{{id}}' />
   <input
+  class="hide-input"
     type='text'
     name='userId'
     value='{{users._id}}'
     placeholder='{{users._id}}'
   />
   <button type='button'>connect</button>
-</form>
+</form> --}}
