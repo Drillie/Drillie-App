@@ -21,7 +21,7 @@ nav {
 padding: 1%;
 color: rgba(255,110,0,1);
 background-color: white;
-border-radius: 0% 2% 2% 0%;
+border-radius: 0px 13px 13px 0px;
 width: 25%;
 display: flex;
 flex-direction: column;
@@ -54,18 +54,18 @@ padding: 5%;
 }
 .profiledata{
     padding: 5%;
-    background-color: rgba(255, 99, 71, 0.733);
-    border-radius: 13px 13 px 0px 0px;
+    background-color: white;
+    color: #FF6E00;
+    border-radius: 13px 13px 0px 0px;
 }
 .frame{
-border: solid 5px;
-border-color: rgba(255, 99, 71, 0.733);
+border: solid 3px;
+border-color: white;
 border-radius: 13px;
 display: flex;
 flex-direction: row;
 width: 1000px;
 }
-
 .display {
 padding: 2%;
 width: 75%;
@@ -171,8 +171,9 @@ justify-content: space-evenly;
     color: rgba(255,110,0,1);
     font-size: 24px;
     margin: 10%;
-    border-style: none;
-    border-radius: 2rem;
+    border: solid 1px;
+    border-color: #FF6E00;
+    border-radius: 13px;
 }
     
 /*projectContainer{
