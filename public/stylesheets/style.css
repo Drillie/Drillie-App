@@ -2,10 +2,11 @@
   box-sizing: border-box;
 }
 
-
-
-
-
+/* #form {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}  */
 
 .chat-app {
   display: flex;
@@ -19,7 +20,6 @@
   
   position: relative;
 }
-
 
 body {
   width: 100vw;
@@ -50,6 +50,7 @@ select {
   justify-content: center;
   align-items: center;
   display: none;
+  
 }
 
 .bg-modal2 {
@@ -71,6 +72,11 @@ select {
   background-color: white;
   border-radius: 15px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+
 }
 
 .modal-content2 {
@@ -117,15 +123,21 @@ select {
 }
 
 .projectContainer {
-  margin: 50px 0;
-  padding: 10px;
-  width: 100vw;
+  margin: 20px 0;
+
+  width: 80%;
   /* box-sizing: border-box; */
   height: 50px;
-  background-color: aquamarine;
+  background-color: rgba(0, 0, 0, 0.19);
+  color: white;
   position: relative;
   display: flex;
   align-items: center;
+  border-radius: 2em;
+  justify-content:space-between;
+  padding: 25px;
+  /* flex-direction: row-reverse; */
+
 }
 
 .buttonContainer {
@@ -413,8 +425,52 @@ select {
   padding: 0.5rem 1rem;
   text-decoration: none;
 }
+.project-srch a {
+  margin-bottom: 2rem;
+  text-decoration: none;
+}
+article {
+  padding: 2rem;
+}
+article div {
+  margin-bottom: 2rem;
+}
+@media only screen and (min-width: 600px) {
+  article {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 
 input.loginInput,
 textarea {
   background: rgb(230, 230, 230);
+}
+
+.btn-edit-project {
+  width: 100px;
+  height: 30px;
+  border-radius: 2em;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.7);
+  font-size: 11pt;
+  margin-right: 0;
+  
+
+  
+}
+
+.btn-edit-project a {
+  color: #ff6e00;
+  text-decoration: none;
+  
+}
+
+.add-project-form {
+  color: black;
+}
+
+.add-project-content {
+  width: 80%;
+  
 }

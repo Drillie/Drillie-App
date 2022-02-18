@@ -1,13 +1,14 @@
+<div class="flexcontainer padding">
 <h1>Add new Projects</h1>
-
+<div class="padding">
 <h3>Current Projects</h3>
-
+</div>
 {{#each projects}}
    <div class="projectContainer">
-      <h4>{{projectname}}</h4>
+      <h4 slot="position:absolut">{{projectname}}</h4>
       <div class="buttonContainer">
-         <button class="viewDetails"><a href="/post-project/{{_id}}">View Details</a></button>
-         <button class="edit"><a href="/post-project/edit/{{_id}}">Edit</a></button>
+         <button class="btn-edit-project"><a href="/post-project/{{_id}}">View Details</a></button>
+         <button class="btn-edit-project"><a href="/post-project/edit/{{_id}}">Edit</a></button>
          {{!-- <button> <a href="/chat-app/{{_id}}">Chat</a></button> --}}
       </div>      
       <div class="close2"><a href="/post-project/delete/{{_id}}">+</a></div>
@@ -15,7 +16,7 @@
 
 {{/each}}
 
-<button id="addProjectButton">Add new Project</button>
+<button id="addProjectButton" class="btn-add-project">Add new Project</button>
 
 {{!-- Custom dropdown --}}
 
@@ -42,14 +43,20 @@
 
 <div class="bg-modal">   
    <div class="modal-content">
-      <div class="close">+</div>
-      <h1>Add a new project</h1>
-      <form action="/post-project" method="POST">
-         <label for="projectname">Project Name</label>
-         <input type="text" name="projectname" id="projectname">
-         <label for="description">Description</label>
-         <input type="text" name="description" id="description">
-         <label for="toolsNeeded">Required Tools</label>
+      <div class="close">+</div>      
+      <div class="add-project-form">
+         <h3>Add a new project</h3>
+         <form  action="/post-project" method="POST">
+         <div class="add-project-content">
+            <label for="projectname">Project Name</label>
+            <input type="text" name="projectname" id="projectname">
+         </div>
+         <div class="add-project-content">
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description">
+         </div>
+         <div class="add-project-content">
+            <label for="toolsNeeded">Required Tools</label>
          {{!-- The custon dropdown does not work because it can´t handle type: Schema.Types.ObjectId --}}
          
          {{!-- <div class="multi-selector">
@@ -73,7 +80,14 @@
                <option value="{{_id}}">{{name}}</option>
             {{/each}}
          </select>
+         </div>       
+         
+         
          <button type="submit">Add this project</button>
       </form>
+
+      </div>
+      
    </div>   
+</div>
 </div>
