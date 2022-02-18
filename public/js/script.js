@@ -90,6 +90,11 @@ function addMarker(coord) {
 // 		.addTo(map)
 // 		.on('dragend', event => console.log(event.target._lngLat))
 // }
+function disableButton() {
+  var btn = document.getElementById('connect-btn')
+  btn.disabled = true
+  btn.innerText = 'connected'
+}
 
 new mapboxgl.Marker({
   color: 'red',
