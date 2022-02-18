@@ -1,9 +1,60 @@
-<div class="dashboard-h"><h2>Find a match for your projects</h2>
 
-  {{#each allProject}}
-    <div class="project-src">
-      <h4> <a href='/match/{{_id}}'>{{projectname}}⛩</a> </h4>
-    </div>
-  {{/each}}
 
+<style>
+  .matches-container {
+    margin: 0;
+    padding: 50px;
+    width: 75%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+  }
+
+  .matches-contianer2 {
+    width: 60%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.2) ;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 0 25px 0 50px;
+    position: relative;
+
+
+  }
+
+  .matches-contianer2 a {
+    font-size: large;
+    color: #FF6E00;
+  }
+
+  .start-chat {
+    height: 60px;
+    width: 140px;
+    border-radius: 35px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+</style>
+
+
+
+<div class="matches-container">
+  <h2>Find a match for your projects </h2>
+  <div>
+    {{#each allProject}}    
+      <div class="matches-contianer2">
+        <h3> {{projectname}}</h3>
+        <div class="start-chat">
+          <a href='/match/{{_id}}'>Find Matches</a>          
+        </div>        
+      </div>    
+    {{/each}}
+  </div>
 </div>
