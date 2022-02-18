@@ -426,7 +426,9 @@ select {
 
 article {
   padding: 2rem;
-  text-align: center;
+}
+article h5{
+text-align: center;
 }
 article div {
   margin-bottom: 2rem;
