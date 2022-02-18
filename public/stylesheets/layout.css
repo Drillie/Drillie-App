@@ -27,14 +27,15 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 }
-
 ul{
-padding: 5%;
+padding: 10%;
 padding-top: 10%;
 list-style: none;
 color: rgba(255,110,0,1);
 }
-
+.welcome {
+    padding-left: 10%;
+}
 .hammerimg {
 width: 25px;
 }
@@ -45,6 +46,7 @@ width: 25px;
 .navlink {
     color: rgba(255,110,0,1);
     font-size: 24px;
+    padding-left: 5%;
 }
 .navlist {
     position: static;
