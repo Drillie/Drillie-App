@@ -38,11 +38,17 @@ color: rgba(255,110,0,1);
 .hammerimg {
 width: 25px;
 }
-
+.logo{
+    width: 100%;
+    padding-left: 5%;
+}
 .navlink {
     color: rgba(255,110,0,1);
     font-size: 24px;
-    }
+}
+.navlist {
+    position: static;
+}
 
 /* profile */
 .data {
