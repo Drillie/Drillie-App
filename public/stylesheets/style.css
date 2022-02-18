@@ -476,3 +476,12 @@ textarea {
   color: #ff6e00;
   text-decoration: none;
 }
+
+.add-project-form {
+  color: black;
+}
+
+.add-project-content {
+  width: 80%;
+  
+}
