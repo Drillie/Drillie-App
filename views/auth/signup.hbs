@@ -2,6 +2,7 @@
   <input type='text' name='username' placeholder='Username' required />
   <input type='email' name='email' placeholder='E-Mail' required />
   <input type='password' name='password' placeholder='Password' />
+  <p>Pick tools you own </p>
   <select name='toolsAvailable' id='toolsAvailable' size='1' multiple>
     {{#each tools}}
       <option value='{{_id}}'>{{name}}</option>
