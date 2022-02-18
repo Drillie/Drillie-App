@@ -52,7 +52,6 @@ width: 25px;
     position: static;
 }
 
-
 /* profile */
 .data {
 padding: 2%;
@@ -65,10 +64,10 @@ padding: 5%;
     padding: 5%;
     background-color: white;
     color: #FF6E00;
-    border-radius: 13px 13px 0px 0px;
+    border-radius: 13px 0px 0px 13px;
 }
 .frame{
-border: solid 3px;
+border: solid 2px;
 border-color: white;
 border-radius: 13px;
 display: flex;
@@ -82,12 +81,11 @@ display: flex;
 flex-direction: row;
 justify-content: space-evenly;
 }
-
 .profilepic {
     width: 350px;
     height:350px;
-    vertical-align: middle;
     border-radius: 50%;
+    vertical-align: middle;
 }
 
 .btn-edit {
@@ -97,7 +95,8 @@ justify-content: space-evenly;
     color: rgba(255,110,0,1);
     font-size: 24px;
     margin: 10%;
-    border-style: none;
+    border: solid 1px;
+    border-color: #FF6E00;
     border-radius: 13px;
 }
 .tool-list {
