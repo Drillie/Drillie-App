@@ -1,11 +1,58 @@
-<div>
-  <h2>Your matched projects </h2>
-  <article>
+<style>
+  .matches-container {
+    margin: 0;
+    padding: 50px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+  }
+
+  .matches-contianer2 {
+    width: 60%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.2) ;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 0 25px 0 50px;
+    position: relative;
+
+
+  }
+
+  .matches-contianer2 a {
+    font-size: large;
+    color: #FF6E00;
+  }
+
+  .start-chat {
+    height: 60px;
+    width: 140px;
+    border-radius: 35px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+</style>
+
+
+
+<div class="matches-container">
+  <h2>Your Matches </h2>
+  <div>
     {{#each matchedProject.matches}}
-      <div>
-        <h5> {{this.projectname}}</h5>
-        <a href='/chat-app/{{this._id}}'>Chat</a>
+      <div class="matches-contianer2">
+        <h3> {{this.projectname}}</h3>
+        <div class="start-chat">
+          <a href='/chat-app/{{this._id}}'>Start a Chat</a>          
+        </div>        
       </div>
     {{/each}}
-  </article>
+  </div>
 </div>
